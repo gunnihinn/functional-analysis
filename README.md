@@ -48,7 +48,7 @@ I'll keep an eye out for survey articles, historical notes, and related material
 As an example:
 
 - Jean Dieudonné, _[History of functional analysis](https://lbs.leitir.is/permalink/354ILC_LBS/qlk1hi/alma990000901590106887)_.
-- Garrett Birkhoff, _[The establishment of functional analysis](https://home.agh.edu.pl/~rudol/History_of_F_A_beginings.pdf)_.
+- Birkhoff and Kreyszig, _[The establishment of functional analysis](https://home.agh.edu.pl/~rudol/History_of_F_A_beginings.pdf)_.
 - Carcassi, Calderon, Aidala,
 _[The unphysicality of Hilbert spaces](https://arxiv.org/abs/2308.06669)_.
 
