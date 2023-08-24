@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+
+\DeclareMathOperator{\supp}{supp}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 1}
+\\[3pt]
+Due by 12:00 on August 28, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+We haven't read anything in the course yet so this is a warmup set.
+Please select two problems to solve and hand in written solutions either in person or to \verb+gunnar@magnusson.io+.
+You are allowed to collaborate on the solutions, just note whether you did so.
+
+The functional analysis we will cover is linear, meaning it takes place
+in vector spaces and deals with linear functions.
+We assume everyone knows what a vector space over a field is.
+In the course we will only consider vector spaces over the real or complex numbers.
+
+
+\begin{prob}[3 points]
+Let $S$ be a set and let $k$ be a field.
+Recall that a function $\phi : S \to k$ has \emph{finite support} if the
+set $\supp \phi := \{ s \in S \mid \phi(s) \not= 0 \}$ is finite.
+Show that the set
+\[
+\kk F(S) :=
+\{ \phi : S \to k \mid \text{$\supp \phi$ is finite} \}
+\]
+can be given the structure of a vector space over $k$.
+Find a basis for the space.
+Find its dimension.
+\end{prob}
+
+Recall that if $V$ and $W$ are vector spaces over a field $k$, then a map
+$f : V \to W$ is \emph{linear} if $f(x + y) = f(x) + f(y)$ for all $x, y \in V$
+and $f(\lambda x) = \lambda f(x)$ for all $\lambda \in k$ and $x \in V$.
+
+\begin{prob}[3 points]
+Let $S$ and $R$ be nonempty sets and let $f : S \to R$ be a function.
+Show that there is an induced linear map $\kk F(f) : \kk F(R) \to \kk F(S)$.
+When is $\kk F(f)$ injective or surjective?
+\end{prob}
+
+
+\begin{prob}[3 points]
+Give three examples of infinite-dimensional vector spaces that are not isomorphic.
+(Prove they are not isomorphic.)
+\end{prob}
+
+Recall that the \emph{dual space} of a vector space $V$ over a field $k$ is the
+space $V^*$ of linear maps $f : V \to k$.
+
+\begin{prob}[3 points]
+Let $V$ and $W$ be vector spaces over $k$ and let $f : V \to W$ be a linear function.
+Show that there is an induced linear function $f^* : W^* \to V^*$.
+When is $f^*$ injective or surjective?
+\end{prob}
+
+\begin{prob}[3 points]
+Show that the map
+\[
+\iota : V \to V^{**},
+\quad
+x \mapsto (f \mapsto f(x))
+\]
+is linear and injective.
+Conclude that if $V$ is finite-dimensional, then $V$ and $V^{**}$ are isomorphic.
+\end{prob}
+
+
+\begin{prob}[3 points]
+Let $V$ be a vector space over $k$ and let $S \subset V$ be a subspace.
+The quotient space $V / S$ is defined to be the set
+\[
+V / S := \{ [v] \mid v \in V, \text{$[v] = [w]$ if $v-w \in S$} \}.
+\]
+Show that $V/S$ can be given the structure of a vector space over $k$ and that
+the obvious map $q : V \to V/S$ is linear and surjective.
+Prove the following universal property of the quotient space:
+
+If $W$ is a vector space over $k$ and $f : V \to W$ is a linear function that maps $S$ to $0$, then there is a unique linear map $g : V/S \to W$ such that the diagram
+\[
+\begin{tikzcd}
+V \ar[d, "q"] \ar[dr, "f"]
+\\
+V/S \ar[r, "g"] & W
+\end{tikzcd}
+\]
+commutes.
+\end{prob}
+
+\end{document}
