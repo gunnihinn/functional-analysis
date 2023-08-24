@@ -52,12 +52,12 @@ In the course we will only consider vector spaces over the real or complex numbe
 
 \begin{prob}[3 points]
 Let $S$ be a set and let $k$ be a field.
-Recall that a function $\phi : S \to k$ has \emph{finite support} if the
-set $\supp \phi := \{ s \in S \mid \phi(s) \not= 0 \}$ is finite.
 Show that the set
 \[
 \kk F(S) :=
-\{ \phi : S \to k \mid \text{$\supp \phi$ is finite} \}
+\bigoplus_{S} k
+= \{ (\lambda_s)_{s \in S} \mid
+\text{$\lambda_s \in k$ and $\lambda_s \not= 0$ for finitely many $s \in S$} \}
 \]
 can be given the structure of a vector space over $k$.
 Find a basis for the space.
@@ -70,7 +70,7 @@ and $f(\lambda x) = \lambda f(x)$ for all $\lambda \in k$ and $x \in V$.
 
 \begin{prob}[3 points]
 Let $S$ and $R$ be nonempty sets and let $f : S \to R$ be a function.
-Show that there is an induced linear map $\kk F(f) : \kk F(R) \to \kk F(S)$.
+Show that there is an induced linear map $\kk F(f) : \kk F(S) \to \kk F(R)$.
 When is $\kk F(f)$ injective or surjective?
 \end{prob}
 
