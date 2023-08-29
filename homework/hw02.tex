@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+
+\DeclareMathOperator{\supp}{supp}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 2}
+\\[3pt]
+Due by 15:00 on Monday, September 4, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select three problems to solve and hand in written solutions either in person or to \verb+gunnar@magnusson.io+.
+
+A \emph{metrizable vector space} is a vector space $V$ that is
+equipped with a metric $d$ for which the addition map $(x, y) \mapsto x +
+y$ and multiplication map $(\lambda, x) \mapsto \lambda x$ are continuous.
+We suppose here that $V$ is defined over a field $k$ such that $\kk R \subset k$
+(for example, the real or complex numbers\footnote{Or the field $\kk C(X)$ of rational functions over $\kk C$ if you want to get weird.}).
+
+
+\begin{prob}
+Let $T_a(x) = x + a$ and $M_\lambda(x) = \lambda x$ for $a \in V$ and $\lambda
+\in k$.
+Show that $T_a$ and $M_\lambda$ are homeomorphisms of $V$ with itself; that is,
+they are continuous maps that have a continuous inverse.
+\end{prob}
+
+
+\begin{prob}
+Let $V$ and $W$ be metrizable vector spaces and $f : V \to W$ a linear map.
+Show that $f$ is continuous if and only if it is continuous at $0$.
+\end{prob}
+
+
+A subset $E \subset V$ of a metrizable vector space is \emph{bounded} if for
+any neighborhood $U$ of $0$ there exists a $\lambda > 0$ such that $\mu E
+\subset U$ for any $\mu \geq \lambda$.
+
+Note that this is \emph{not} the same notion of boundedness we get from the
+metric on $V$; it can be defined if we only have a topology and not a metric.
+Sets can be bounded in one notion and not the other.
+
+
+\begin{prob}
+Let $U$ be an open set that contains $0$.
+Let $(r_j)$ be an increasing sequence of positive real numbers such that $r_j
+\to \infty$. Show that $V = \bigcup_{j=1}^\infty r_j U$.
+Conclude that if $K \subset V$ is compact, then $K$ is bounded.
+\end{prob}
+
+\begin{prob}
+Let $E \subset V$ be a set.
+Show that the following are equivalent:
+\begin{enumerate}
+\item
+$E$ is bounded.
+
+\item
+If $(x_n)$ is a sequence in $E$ and $(\lambda_n)$ is a sequence of scalars such
+that $\lambda_n \to 0$ as $n \to \infty$, then $\lambda_n x_n \to 0$ as $n \to
+\infty$.
+\end{enumerate}
+\end{prob}
+
+A map $f : V \to W$ between metrizable vector spaces is \emph{bounded} if
+it maps bounded sets to bounded sets.
+
+\begin{prob}
+Let $V$ and $W$ be metrizable vector spaces and $f : V \to W$ a linear map.
+Show that if $f$ is continuous then it is bounded.%
+\footnote{The converse is true if we assume the metric is translation
+invariant, that is, it satisfies $d(x + z, y + z) = d(x,y)$ for all $x,y,z \in
+V$.}
+Find spaces $V$ and $W$ and a linear function $f : V \to W$ that is not continuous.
+\end{prob}
+
+\end{document}
