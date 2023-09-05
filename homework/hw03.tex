@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+
+\DeclareMathOperator{\supp}{supp}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 3}
+\\[3pt]
+Due by 15:00 on Monday, September 11, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select \textbf{three} problems to solve and hand in written solutions
+either in person or to \verb+gunnar@magnusson.io+. You may quote problems from
+older homework sets and results we've read in the textbook if you feel like
+they help.
+
+Recall that in last week's problems we defined a subset $E \subset V$ of a
+metrizable vector space to be \emph{bounded} if for any neighborhood $U$ of $0$
+there exists a $\lambda > 0$ such that $E \subset \mu U$ for any $\mu \geq
+\lambda$.
+
+
+\begin{prob}
+Let $V$ be a normed vector space.
+Show that $E \subset V$ is bounded in the metrizable sense
+if and only if it is bounded in the usual sense, that is, there exists
+$r > 0$ such that $|x| \leq r$ for all $x \in E$.
+\end{prob}
+
+\begin{prob}
+Let $V$ be finite-dimensional and let
+$| \, \cdot \, |_1$ and
+$| \, \cdot \, |_2$ be two norms on $V$.
+Show that the norms are equivalent, meaning that there exist constants $c$ and
+$C$ such that
+\[
+c |x|_1 \leq |x|_2 \leq C|x|_1
+\]
+for all $x \not= 0$.
+\end{prob}
+
+A set $E \subset V$ is \emph{convex} if for any $x, y \in E$ the vectors
+$\lambda x + (1 - \lambda) y$ are also in $E$ for $0 \leq \lambda \leq 1$.
+
+\begin{prob}
+\begin{enumerate}
+\item
+Show that the unit ball in a normed vector space is convex.
+
+\item
+Show that a linear subspace $E \subset V$ is convex.
+
+\item
+If $f : V \to W$ is linear and $E \subset V$ is convex, show that $f(E)$ is convex.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Let $V$ and $W$ be normed vector spaces and let $f : V \to W$ be linear.
+Show that $f$ is continuous if and only if it is bounded, in the sense
+that there exists a constant $C > 0$ such that $|f(x)| \leq C |x|$ for all $x$.
+\end{prob}
+
+\begin{prob}
+Let $V$ be a normed vector space.
+\begin{enumerate}
+\item
+Define $X$ to be the set of Cauchy sequences in $V$.
+Show that $X$ may be given the structure of a vector space.
+
+\item
+Show that $(x_n) \mapsto \lim_{n \to \infty} |x_n|$ defines a norm on $X$.
+
+\item
+Show that the map $f : V \to X$ that sends $x$ to the sequence $(x,x,\ldots)$
+is linear, injective, and continuous.
+
+\item
+Show that $X$ is complete, and thus a Banach space.
+\end{enumerate}
+\end{prob}
+
+\end{document}
