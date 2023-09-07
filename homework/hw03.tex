@@ -94,20 +94,40 @@ that there exists a constant $C > 0$ such that $|f(x)| \leq C |x|$ for all $x$.
 
 \begin{prob}
 Let $V$ be a normed vector space.
+We are going to prove that $V$ can be embedded in a Banach space.
 \begin{enumerate}
 \item
 Define $X$ to be the set of Cauchy sequences in $V$.
 Show that $X$ may be given the structure of a vector space.
 
 \item
-Show that $(x_n) \mapsto \lim_{n \to \infty} |x_n|$ defines a norm on $X$.
+Show that $(x_n) \mapsto \lim_{n \to \infty} |x_n|$ defines a seminorm on $X$;
+that is a function that satisfies the conditions to be norm except $|x| = 0$
+does not imply $x = 0$.
 
 \item
-Show that the map $f : V \to X$ that sends $x$ to the sequence $(x,x,\ldots)$
-is linear, injective, and continuous.
+Show that $N := \{ x \in X \mid |x| = 0 \}$ is a closed subspace of $X$, and that
+the seminorm on $X$ induces a norm on the quotient space $X / N$.
 
 \item
-Show that $X$ is complete, and thus a Banach space.
+Show that $X / N$ is complete, and thus a Banach space.
+
+\item
+Show that the map $f : V \to X / N$ that sends $x$ to the image of the sequence
+$(x,x,\ldots)$ under the quotient map is linear, injective, and continuous.
+
+\item
+Show that $X / N$ satisfies the following universal property:
+If $Y$ is a Banach space and $f : V \to Y$ is a continuous linear map, then
+there is a unique continuous linear map $\hat f : X/N \to Y$ such that the
+following diagram commutes:
+\[
+\begin{tikzcd}
+V \ar[dr,"f"] \ar[d] &
+\\
+X/N \ar[r,"\hat{f}"] & Y
+\end{tikzcd}
+\]
 \end{enumerate}
 \end{prob}
 
