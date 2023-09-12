@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 4}
+\\[3pt]
+Due by 15:00 on Monday, September 18, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select \textbf{three} problems to solve and hand in written solutions
+either in person or to \verb+gunnar@magnusson.io+. You may quote problems from
+older homework sets and results we've read in the textbook if you feel like
+they help.
+
+If $f : V \to W$ is a linear map we denote its kernel by $\ker f = \{ x \in V
+\mid f(x) = 0 \}$.
+
+\begin{prob}
+Let $f : V \to V$ be a linear map.
+\begin{enumerate}
+\item
+Suppose $V$ is finite-dimensional.
+Show that $f$ is bijective if and only if $\ker f = 0$.
+
+\item
+Consider $l^\infty$, the space of bounded sequences $(x_n)$ of real
+numbers.
+Let $f : l^\infty \to l^\infty$ be the right shift operator $f(x_n) =
+(0,x_1,x_2,\ldots)$.
+Show that $\ker f = 0$ but that $f$ is not bijective.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Let $f : V \to W$ be a surjective bounded operator from a normed space to a
+normed space. Suppose that there is a $c > 0$ such that $|f(x)| \geq c|x|$ for
+all $x$. Show that $f^{-1} : W \to V$ exists and is bounded.
+\end{prob}
+
+\begin{prob}
+Let $l^\infty$ be the space of bounded sequences $(x_n)$ of real numbers.
+\begin{enumerate}
+\item
+Show that $f : l^\infty \to l^\infty$ defined by $f(x_n) = (x_n / n)$ is linear
+and bounded.
+
+\item
+Show that $f^{-1}$ exists and is linear but not bounded.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Let $V = C^0([0,1])$ be the space of real-valued continuous functions on $[0,1]$.
+Let $T : V \to \kk R$ be defined by $T(f) = f(0)$.
+\begin{enumerate}
+\item
+Show that $T$ is a linear functional.
+
+\item
+Consider the norm $|f| = (\int_0^1 |f(x)|^p dx)^{1/p}$ for $1 \leq p < \infty$.
+Show that $T$ is not bounded with respect to this norm.
+
+\item
+Consider the norm $|f| = \sup_{0 \leq x \leq 1} |f(x)|$.
+Show that $T$ is bounded with respect to this norm and calculate its norm.
+\end{enumerate}
+\end{prob}
+
+\end{document}
