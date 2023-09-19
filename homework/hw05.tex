@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 5}
+\\[3pt]
+Due by 15:00 on Monday, September 25, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select \textbf{three} problems to solve and hand in written solutions
+either in person or to \verb+gunnar@magnusson.io+. You may quote problems from
+older homework sets and results we've read in the textbook if you feel like
+they help.
+
+Recall that the (algebraic) dual of a vector space $V$ is the space of
+linear maps $V^* = \Hom(V, \kk R)$.
+For a normed space, we will usually want to talk about the bounded linear
+functionals on the space.
+We will denote the set of those by
+$V^\vee := \{ f \in V^* \mid \text{$f$ is bounded} \}$.
+
+\begin{prob}
+If $V$ is a normed space and $S \subset V$ a subset, we define the distance from
+a point $x$ to $S$ by $d(x, S) = \inf_{y \in S} |x - y|$.
+Let $f : V \to \kk R$ be a bounded linear functional and let
+\[
+H_f = \{ x \in V \mid f(x) = 1 \}.
+\]
+Show that
+\[
+|f| = \frac{1}{d(0, H_f)}.
+\]
+\end{prob}
+
+\begin{prob}
+Let $V = \kk R^2$ and let $f : V \to V$ be the operator defined by the matrix
+\[
+A = \begin{pmatrix}
+1 & 2 \\ 3 & 4
+\end{pmatrix}.
+\]
+Calculate $|A|$ when $V$ has each of the norms below:
+\begin{enumerate}
+\item
+$|(x,y)|_1 = |x| + |y|$.
+
+\item
+$|(x,y)|_2 = \sqrt{x^2 + y^2}$.
+
+\item
+$|(x,y)|_\infty = \max\{|x|, |y|\}$.
+\end{enumerate}
+If this is too difficult we may also accept bounds in terms of the other norms
+or numerical approximations.
+\end{prob}
+
+\begin{prob}
+Let $V$ and $W \not= 0$ be normed spaces.
+Suppose that $\dim V = \infty$.
+Show that there exists an unbounded linear operator $f : V \to W$.
+Conclude that $V^\vee \not= V^*$.
+(Hint: Every vector space has a basis.)
+\end{prob}
+
+
+If $X$ is a set and $f$ a function on a subset $S \subset X$, we say that
+a function $\hat f$ on $X$ is an extension of $f$ if $\hat f(x) = f(x)$ for
+all $x \in S$.
+
+
+\begin{theo}[Hahn--Banach]
+Let $V$ be a normed space and let $S \subset V$ be a subspace.
+If $f \in S^\vee$ there exists a bounded extension $\hat f \in V^\vee$ of $f$
+such that $|\hat f| = |f|$.
+\end{theo}
+
+\begin{prob}[Proof of Hahn--Banach, part 1]
+Let $V$ be a normed space.
+\begin{enumerate}
+\item
+Let $S \subset V$ be a linear subspace.
+Let $x_1 \in V \setminus S$ and let $S_1 = S + \kk R x_1$.
+Show that $S_1$ is a linear subspace that contains $S$, and that every vector
+in $S_1$ can be written uniquely as $x = x_0 + \lambda x_1$, where $x_0 \in S$
+and $\lambda \in \kk R$.
+
+\item
+Let $f \in S^\vee$.
+Show that $f_1(x) = f(x_0)$ is a bounded extension of $f$ from $S^\vee$ to
+$S_1^\vee$, and that $|f_1| = |f|$.
+\end{enumerate}
+\end{prob}
+
+\emph{A partial order} on a set $S$ is a binary relation $\prec$
+on $S$ that satisfies:
+\begin{itemize}
+\item
+Reflexivity: $x \prec x$.
+
+\item
+Antisymmetry:
+$x \prec y$ and $y \prec x$ imply $x = y$.
+
+\item
+Transitivity:
+$x \prec y$ and $y \prec z$ imply $x \prec z$.
+\end{itemize}
+As an example, consider the inclusion $U \subset V$ of subsets of $S$.
+
+A subset $T \subset S$ is totally ordered if for every $x,y$ in $T$ we have
+either $x \prec y$ or $y \prec x$.
+An element $y$ is an upper bound for $T$ if $x \prec y$ for every $x \in T$.
+Finally an element $y \in S$ is maximal if $x \prec y$ implies $x = y$.
+
+Zorn's lemma says that if $(S,\prec)$ is a partially ordered set such that
+every totally ordered subset contains an upper bound, then $(S,\prec)$ contains
+at least one maximal element.
+
+
+\begin{prob}[Proof of Hahn--Banach, part 2]
+Let $V$ be a normed space and $S \subset V$ a subspace.
+Let also $f \in S^\vee$ be a bounded linear functional.
+Denote by $\cc L$ the set of all bounded extensions $(M, g)$ of $f$ to a
+subspace $M$ such that $|g| = |f|$.
+
+\begin{enumerate}
+\item
+Show that $(S, f) \in \cc L$, so it is not empty.
+
+\item
+We write $(M,g) \prec (M',g')$ if $M \subset M'$ and $g'(x) = g(x)$ for all $x
+\in M$.
+Show that this is a partial order on $\cc L$.
+
+\item
+Suppose that $\cc F$ is a totally ordered subset of $\cc L$.
+Define a set $W = \bigcup_{(M,f) \in \cc F} M$.
+Show that $W$ is in fact a vector subspace of $V$.
+
+\item
+Suppose that $\cc F$ is a totally ordered subset of $\cc L$.
+Define $W$ as above and define $h : W \to \kk R$ by
+\(
+h(x) = g(x)
+\)
+for any $(M,g)$ such that $x \in M$.
+Show that this is well-defined, and that $h$ is an extension of $f$.
+
+\item
+Conclude that there exists a maximal extension $h : W \to \kk R$ of $f$,
+and use part 1 to conclude that we must have $W = V$.
+\end{enumerate}
+\end{prob}
+
+\end{document}
