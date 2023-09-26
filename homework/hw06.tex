@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+\def\norm#1{\| #1 \|}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ann}{ann}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 6}
+\\[3pt]
+Due by 15:00 on Monday, October 2, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select \textbf{three} problems to solve and hand in written solutions
+either in person or to \verb+gunnar@magnusson.io+. You may quote problems from
+older homework sets and results we've read in the textbook if you feel like
+they help.
+
+A \emph{hyperplane} in a normed space $V$ is a set of the form $H = x_0 + H_0$,
+where $H_0 \subset V$ is a subspace such that $\codim H_0 := \dim V / H_0 = 1$.
+
+\begin{prob}
+Let $V$ be a normed space.
+Show that $H$ is a closed hyperplane if and only if there exists a bounded
+linear functional $f \in V^\vee$ such that $H = f^{-1}(c)$ for some $c \in \kk R$.
+Then show that $V \setminus H$ consists of two disjoint connected components.
+\end{prob}
+
+\begin{prob}
+Let $V$ be a normed space and let
+\begin{align*}
+S(r) = \{ x \in V \mid \norm{x} = r \},
+\quad
+B(r) = \{ x \in V \mid \norm{x} < r \},
+\end{align*}
+be the sphere and ball of radius $r$.
+Show that for any $x_0 \in S(r)$ there exists a hyperplane $H \subset V$ that
+contains $x_0$ such that the open ball $B(r)$ is
+entirely contained in one component of $V \setminus H$.
+\end{prob}
+
+The \emph{annihilator} of a set $M$ in a normed space $V$ is the set
+\[
+M^{\perp} = \{ f \in V^\vee \mid \text{$f(x) = 0$ for all $x \in M$} \}.
+\]
+We say that a normed space $V$ is \emph{isometric} to a normed space $W$ if
+there exists a linear isomorphism $f : V \to W$ that preserves their norms,
+that is, such that $\norm{f(x)} = \norm{x}$ for all $x \in V$.
+
+Recall that if
+\[
+0 \longrightarrow S \longrightarrow V \longrightarrow V/S \longrightarrow 0
+\]
+is a short exact sequence of vector spaces, then
+\[
+0 \longrightarrow (V/S)^* \longrightarrow V^* \longrightarrow S^* \longrightarrow 0
+\]
+is also exact.
+The next two problems establish a similar duality between sub- and quotient
+spaces for normed spaces and bounded linear functionals.
+
+\begin{prob}
+Let $V$ be a normed space and $S \subset V$ a subspace.
+Show that $S^\vee$ is isometric to $V^\vee / S^\perp$.\footnote{Why does the quotient space have a norm and not just a seminorm?}
+\end{prob}
+
+\begin{prob}
+Let $V$ be a normed space and $S \subset V$ a closed subspace.
+Show that $(V / S)^\vee$ is isometric to $S^\perp$.
+\end{prob}
+
+\end{document}
