@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+\def\norm#1{\| #1 \|}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ann}{ann}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 7}
+\\[3pt]
+Due by 15:00 on Monday, October 9, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select \textbf{three} problems to solve and hand in written solutions
+either in person or to \verb+gunnar@magnusson.io+.
+
+Recall that if $X$ is an inner product space and $Y \subset X$ is a complete
+subspace then for any $x \in X$ there exists a unique $y \in Y$ such that $|x -
+y| = d(x, Y)$.\footnote{Kreyszig, Lemma~3.3-2.}
+Also recall that if $M \subset X$ is a set, we denote
+\[
+M^\perp = \{ x \in X \mid \text{$\<x, y\> = 0$ for all $y \in M$}\}.
+\]
+
+\begin{prob}
+Let $X$ be a Hilbert space and let $Y \subset X$ be a closed subspace.
+Define $P : X \to X$ by $x \mapsto y$, where $y \in Y$ is the unique element
+such that $|x - y| = d(x, Y)$.
+\begin{enumerate}
+\item
+Show that $P$ is linear.
+
+\item
+Show that $P$ is bounded.
+
+\item
+Show that $P^2 = P$.
+
+\item
+Show that $\ker P = Y^\perp$ and $\im P = Y$.
+
+\item
+Conclude that $X = Y \oplus Y^\perp$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Let $X$ be a Hilbert space and $M \subset X$ a subset.
+\begin{enumerate}
+\item
+Show that $M^\perp$ is a closed subspace of $X$.
+
+\item
+Show that $M \subset (M^\perp)^\perp$.
+
+\item
+Show that $M = (M^\perp)^\perp$ if $M$ is a closed subspace.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Let $X$ be a Hilbert space and $Y \subset X$ a subspace (not necessarily closed).
+Show that $Y$ is dense in $X$ if and only if $Y^\perp = \{ 0 \}$.
+\end{prob}
+
+\begin{prob}
+Let $X$ be an inner product space and fix $y \in X$.
+Show that $f(x) = \<x, \bar y \>$ is a bounded linear functional on $X$
+and that $|f| = |y|$.
+\end{prob}
+
+\begin{prob}
+Let $X$ be a Hilbert space and let $f \in X^\vee$ be a bounded linear
+functional.
+\begin{enumerate}
+\item
+Show that $X = \ker f \oplus \ker f^\perp$.
+
+\item
+Show that $\dim \ker f^\perp = 1$.
+
+\item
+Prove the Riesz representation theorem:
+There exists a unique $y \in X$ such that $f(x) = \< x, \bar y \>$ for all $x$.
+\end{enumerate}
+\end{prob}
+
+\end{document}
