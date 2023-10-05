@@ -1,0 +1,246 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+\def\norm#1{\| #1 \|}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ann}{ann}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 7}
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Recall that if $X$ is an inner product space and $Y \subset X$ is a complete
+subspace then for any $x \in X$ there exists a unique $y \in Y$ such that $|x -
+y| = d(x, Y)$.
+
+\begin{prob}
+Let $X$ be a Hilbert space and let $Y \subset X$ be a closed subspace.
+Define $P : X \to X$ by $x \mapsto y$, where $y \in Y$ is the unique element
+such that $|x - y| = d(x, Y)$.
+\begin{enumerate}
+\item
+Show that $P$ is linear.
+
+\item
+Show that $P$ is bounded.
+
+\item
+Show that $P^2 = P$.
+
+\item
+Show that $\ker P = Y^\perp$ and $\im P = Y$.
+
+\item
+Conclude that $X = Y \oplus Y^\perp$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Solution]
+1.
+We know that if $y = P(x)$ then $x - y$ is orthogonal to $Y$.
+The converse is also true: If $y \in Y$ is such that $x - y \perp Y$ then $y =
+P(x)$.
+This holds because for such a $y$ and any $z \in Y$ we have
+\[
+|x - z|
+= |(x - y) + (y - z)|
+= |x - y| + |y - z|
+\geq |x - y|.
+\]
+Suppose now that $x_1, x_2 \in X$ and let $y_j = P(x_j)$.
+For $\lambda, \mu \in \kk C$ we then have
+\[
+\< \lambda x_1 + \mu x_2 - (\lambda y_1 + \mu y_2), \bar y \>
+= \lambda \< x_1 - y_1, \bar y \>
++ \mu \< x_2 - y_2, \bar y\>
+= 0
+\]
+for any $y \in Y$.
+Therefore $\lambda P(x_1) + \mu P(x_2) = P(\lambda x_1 + \mu x_2)$.
+
+2. Note that $d(x, Y) \leq |x|$ for any $x \in X$.
+Then
+\[
+|P(x)|
+= |P(x) - x + x|
+\leq |P(x) - x| + |x|
+\leq 2|x|.
+\]
+
+3. It is enough to show that $P(y) = y$ for any $y \in Y$.
+But $d(y, Y) = 0$ for $y \in Y$, so $P(y) = y$.
+
+4. If $y \in Y$ then $P(y) = y$, so $\im P = y$.
+Let $x \in Y^\perp$.
+Then $0 \in Y$ is such that $x - 0 = x \perp Y$, so $P(x) = 0$.
+Now let $x \in \ker P$.
+Then $x - P(x) = x$ is orthogonal to $Y$, so $x \in Y^\perp$.
+
+5. For any $P : X \to X$ with $P^2 = P$ we have $X = \ker P \oplus \im P = Y
+\oplus Y^\perp$.
+\end{proof}
+
+\begin{prob}
+Let $X$ be a Hilbert space and $M \subset X$ a subset.
+\begin{enumerate}
+\item
+Show that $M^\perp$ is a closed subspace of $X$.
+
+\item
+Show that $M \subset (M^\perp)^\perp$.
+
+\item
+Show that $M = (M^\perp)^\perp$ if $M$ is a closed subspace.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Solution]
+1. $M^\perp$ is a subspace by linearity of the inner product.
+It is closed because $M^\perp = \bigcap_{y \in M} \ker(x \mapsto \<x, \bar y\>)$.
+
+2. Let $x \in M$ and $y \in M^\perp$.
+Then $\<y, \bar x\> = \overline{\<x, \bar y\>} = 0$ so $x \in (M^\perp)^\perp$.
+
+3. By Problem 1 we have $X = M \oplus M^\perp = M^\perp \oplus (M^\perp)^\perp$
+and $M \subset (M^\perp)^\perp$.
+We get exact sequences
+\[
+\begin{tikzcd}
+0 \ar[r] & M \ar[d] \ar[r] & X \ar[r] \ar[d] & M^\perp \ar[r] \ar[d] & 0
+\\
+0 \ar[r] & (M^\perp)^\perp \ar[r] & X \ar[r] & M^\perp \ar[r] & 0
+\end{tikzcd}
+\]
+where the second and third downward arrows are isomorphisms, so the first one
+is as well by general theory.
+\end{proof}
+
+\begin{prob}
+Let $X$ be a Hilbert space and $Y \subset X$ a subspace (not necessarily closed).
+Show that $Y$ is dense in $X$ if and only if $Y^\perp = \{ 0 \}$.
+\end{prob}
+
+\begin{proof}[Solution]
+Suppose $Y$ is dense.
+If $x \in Y^\perp$ then there are $y_n$ in $Y$ such that $y_n \to x$.
+But then $|x|^2 = 0$ by continuity.
+
+Now suppose that $Y^\perp = \{0\}$.
+It's clear that if $Y \subset Z$ then $Z^\perp \subset Y^\perp$, so
+${\overline Y}^\perp \subset Y^\perp = \{ 0 \}$.
+As $\overline Y$ is a closed subspace we then get
+\[
+\overline Y
+= ({\overline Y}^\perp)^\perp
+= \{ 0 \}^\perp
+= X.
+\qedhere
+\]
+\end{proof}
+
+\begin{prob}
+Let $X$ be an inner product space and fix $y \in X$.
+Show that $f(x) = \<x, \bar y \>$ is a bounded linear functional on $X$
+and that $|f| = |y|$.
+\end{prob}
+
+\begin{proof}[Solution]
+This is a linear functional because the inner product is linear in its
+first variable, and Cauchy--Schwarz gives
+\[
+|f(x)| = |\<x, \bar y\>| \leq |x| |y|,
+\]
+so $f$ is bounded and $|f| \leq |y|$.
+By taking a multiple of $y$ we get equality, so $|f| = |y|$.
+\end{proof}
+
+\begin{prob}
+Let $X$ be a Hilbert space and let $f \in X^\vee$ be a bounded linear
+functional.
+\begin{enumerate}
+\item
+Show that $X = \ker f \oplus \ker f^\perp$.
+
+\item
+Show that $\dim \ker f^\perp = 1$.
+
+\item
+Prove the Riesz representation theorem:
+There exists a unique $y \in X$ such that $f(x) = \< x, \bar y \>$ for all $x$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Solution]
+1. As $f$ is bounded then $\ker f$ is a closed subspace, so by Problem 1 we have
+$X = \ker f \oplus \ker f^\perp$.
+
+2. We do have to assume that $f \not= 0$.
+Let $y,z \in \ker f^\perp$ and suppose that both are nonzero.
+By scaling we may assume that $f(y) = f(z) = 1$.
+Then $y - z \in \ker f$, so
+$0 = \<y, \overline{y - z}\> = |y|^2 - \<y, \bar z\>$
+and $\<y, \bar z\> = |y|^2$.
+Similarly we find that $\<z, \bar y\> = |z|^2$.
+Multiplying together we get
+\[
+|\<y, \bar z\>|^2 = |y|^2 |z|^2,
+\]
+which only holds when $z = \lambda y$ by Cauchy--Schwarz.
+Therefore $(y)$ is a basis of $\ker f^\perp$.
+
+3.
+We first show that there exists a nonzero $y \in \ker f^\perp$ such that
+$f(y) = |y|^2$.
+Pick any nonzero $y \in \ker f^\perp$.
+Multiplying it by $e^{i\theta}$ we may assume that $f(y) > 0$.
+Then multiplying by a real $t > 0$ we want to solve $t f(y) = t^2 |y|^2$
+for $t$, which we can.
+
+Now every $x \in X$ can be written as $x = z + \lambda y$, where $z \in \ker f$.
+Then
+\[
+f(x) = \lambda f(y) = \lambda |y|^2 = \<x, \bar y\>.
+\]
+If $z$ is another such element, then we get $\<x, \bar y\> = f(x) = \<x, \bar
+z\>$ for all $x$, so $\<x, \overline{y - z}\> = 0$ for all $x$.
+Then $|y - z|^2 = 0$, so $z = y$.
+\end{proof}
+
+\end{document}

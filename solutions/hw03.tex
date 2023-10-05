@@ -1,0 +1,318 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+
+\DeclareMathOperator{\supp}{supp}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 3}
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+
+\begin{prob}
+Let $V$ be a normed vector space.
+Show that $E \subset V$ is bounded in the metrizable sense
+if and only if it is bounded in the usual sense, that is, there exists
+$r > 0$ such that $|x| \leq r$ for all $x \in E$.
+\end{prob}
+
+\begin{proof}[Solution]
+Suppose $E$ is bounded in the metrizable sense.
+Take $U = B(1)$.
+There is a $\lambda > 0$ such that $E \subset \mu B(1)$ for any $\mu \geq \lambda$.
+But then $|x| \leq |\lambda|$ for any $x \in E$.
+
+Suppose then that $E$ is bounded in the norm sense.
+Then there exists $r > 0$ such that $E \subset B(r)$.
+Let $U$ be an open neighborhood around $0$.
+Then there exists $\varepsilon > 0$ such that $0 \in B(\varepsilon) \subset U$.
+It follows that $E \subset (\mu/\varepsilon) B(\varepsilon)
+\subset (\mu/\varepsilon) U$ for any $\mu \geq r$.
+\end{proof}
+
+\begin{prob}
+Let $V$ be finite-dimensional and let
+$| \, \cdot \, |_1$ and
+$| \, \cdot \, |_2$ be two norms on $V$.
+Show that the norms are equivalent, meaning that there exist constants $c$ and
+$C$ such that
+\[
+c |x|_1 \leq |x|_2 \leq C|x|_1
+\]
+for all $x \not= 0$.
+\end{prob}
+
+\begin{proof}[Solution]
+Let's show that the map $x \mapsto |x|_1$ is continuous with respect to
+the metric defined by $|\cdot|_2$.
+Let $\varepsilon > 0$.
+We want to show that there is a $\delta > 0$ such that $|x|_1 < \varepsilon$
+if $|x|_2 < \delta$.
+
+Let's do this by constructing an increasing chain of subspaces of $V$ on
+which this is true.
+First let $v \not= 0$ and let $L = \kk R v$ be a line.
+If $x, x_0 \in L$ then $x = \lambda v$ and $x_0 = \lambda_0 v$ for some
+$\lambda, \lambda_0 \in \kk R$, so
+\[
+|x - x_0|_1
+= |\lambda - \lambda_0| |v|_1
+= |\lambda - \lambda_0| \frac{|v|_1}{|v|_2} |v|_2
+= \frac{|v|_1}{|v|_2} |x - x_0|_2.
+\]
+If $\varepsilon > 0$ is given we pick $\delta > 0$ such that
+$|x - x_0|_2 < \varepsilon |v|_2 / |v|_1$, and get that $|x - x_0|_1 <
+\varepsilon$.
+
+Suppose then that $S \subset V$ is a proper subspace on which $|\cdot|_1$ is
+continuous and let $v \in V \setminus S$.
+We want to show $|\cdot|_1$ is continuous on $S + \kk R v$.
+Any vector therein can be written as $x + \lambda v$ with $x \in S$ and
+$\lambda \in \kk R$.
+Let $v_0 = x_0 + \lambda_0 v$ and $v = x + \lambda v$.
+Then
+\begin{align*}
+|v - v_0|_1
+= |(x - x_0) + (\lambda - \lambda_0) v|_1
+&\leq |x - x_0|_1 + |\lambda - \lambda_0| |v|_1
+\\
+&= |x - x_0|_1 + |\lambda - \lambda_0| \frac{|v|_1}{|v|_2} |v|_2
+\\
+&= |x - x_0|_1 + \frac{|v|_1}{|v|_2} |\lambda v - \lambda_0 v|_2.
+\end{align*}
+Let $\varepsilon > 0$ be given and let $\delta > 0$ be such that
+$|x - x_0|_1 < \varepsilon / 2$
+and $|\lambda v - \lambda_0 v|_2 < \varepsilon |v|_2 / (2 |v|_1)$
+if $|v - v_0|_2 < \delta$.
+Then $|v - v_0|_1 < \varepsilon$, so $|\cdot|_1$ is continuous at $v_0$.
+
+We can thus construct an increasing flag $0 \subset L_1 \subset L_2 \subset
+\cdots$ of subspaces of $V$ on which $|\cdot|_1$ is continuous.
+As $V$ is finite dimensional, we eventually have $L_n = V$, so $|\cdot|_1$ is
+continuous.
+
+Having proven this, we note that the unit sphere is compact since $V$ is
+finite dimensional.
+As $x \mapsto |x|_1$ is continuous it attains a minimum $c$ and maximum $C$ on
+the unit sphere.
+If $x \in V$ there exists $u$ in the unit sphere such that $x = |x|_2 u$.
+Then
+\[
+|x|_1 = |x|_2 |u|_1 \leq C |x|_2
+\]
+for all $x$, and similarly $|x|_1 \geq c |x|_2$.
+\end{proof}
+
+\begin{prob}
+\begin{enumerate}
+\item
+Show that the unit ball in a normed vector space is convex.
+
+\item
+Show that a linear subspace $E \subset V$ is convex.
+
+\item
+If $f : V \to W$ is linear and $E \subset V$ is convex, show that $f(E)$ is convex.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Solution]
+All obvious.
+\end{proof}
+
+\begin{prob}
+Let $V$ and $W$ be normed vector spaces and let $f : V \to W$ be linear.
+Show that $f$ is continuous if and only if it is bounded, in the sense
+that there exists a constant $C > 0$ such that $|f(x)| \leq C |x|$ for all $x$.
+\end{prob}
+
+\begin{proof}[Solution]
+Suppose $f$ is continuous.
+Then there is a $\delta > 0$ such that $f(B(\delta)) \subset B(1)$, so
+$f(B(1)) \subset B(1/\delta)$ by linearity.
+If $x \not= 0$ then $(1 / |x| + \varepsilon) x \in B(1)$ for any $\varepsilon > 0$,
+so
+\[
+\frac{1}{|x| + \varepsilon} | f( x ) |
+= \biggl| f\biggl( \frac{1}{|x| + \varepsilon} x \biggr) \biggr|
+\leq \frac{1}{\delta}
+\]
+and taking limits we get $|f(x)| \leq |x| / \delta$.
+
+Suppose that $f$ is bounded.
+We know that $f$ is continuous if and only if it is continuous at $0$.
+Let $\varepsilon > 0$ and let $\delta < \varepsilon/C$; then
+\[
+|f(x)| \leq C |x| < \varepsilon
+\]
+for any $x \in B(\delta)$, so $f$ is continuous at $0$.
+\end{proof}
+
+\begin{prob}
+Let $V$ be a normed vector space.
+We are going to prove that $V$ can be embedded in a Banach space.
+\begin{enumerate}
+\item
+Define $X$ to be the set of Cauchy sequences in $V$.
+Show that $X$ may be given the structure of a vector space.
+
+\item
+Show that $(x_n) \mapsto \lim_{n \to \infty} |x_n|$ defines a seminorm on $X$;
+that is a function that satisfies the conditions to be norm except $|x| = 0$
+does not imply $x = 0$.
+
+\item
+Show that $N := \{ x \in X \mid |x| = 0 \}$ is a subspace of $X$, and that
+the seminorm on $X$ induces a norm on the quotient space $X / N$.
+
+\item
+Show that $X / N$ is complete, and thus a Banach space.
+
+\item
+Show that the map $f : V \to X / N$ that sends $x$ to the image of the sequence
+$(x,x,\ldots)$ under the quotient map is linear, injective, and continuous.
+
+\item
+Show that $X / N$ satisfies the following universal property:
+If $Y$ is a Banach space and $f : V \to Y$ is a continuous linear map, then
+there is a unique continuous linear map $\hat f : X/N \to Y$ such that the
+following diagram commutes:
+\[
+\begin{tikzcd}
+V \ar[dr,"f"] \ar[d] &
+\\
+X/N \ar[r,"\hat{f}"] & Y
+\end{tikzcd}
+\]
+\end{enumerate}
+\end{prob}
+
+
+\begin{proof}[Solution]
+1. We have $X = \{ (x_n) \mid x_n \in V \text{ is Cauchy} \}$.
+Define $\lambda x = (\lambda x_n)$ and $x + y = (x_n + y_n)$.
+The first is clearly well defined and the second is also because
+\[
+| x_n + y_n - (x_m + y_m) |
+= | (x_n - x_m) + (y_n - y_m) |
+\leq |x_n - x_m| + |y_n - y_m|
+\]
+so $(x_n + y_m)$ is Cauchy if $(x_n)$ and $(y_n)$ are.
+Then $X$ is a vector space as it is a subspace of the space of all sequences in
+$V$, which is just $\prod_{\kk N} V$.
+
+2. First off this is well-defined because if $(x_n)$ is Cauchy then so is
+$(|x_n|)$ and $\kk R$ is complete.
+This behaves correctly with respect to scaling and satisfies the triangle
+inequality.
+However $|x| = 0$ only implies that $(x_n)$ converges to $0$, not that it is
+zero, so this is a seminorm.
+
+3. Since $|\cdot|$ is a seminorm we see that $N = \{ x \in X \mid |x| = 0\}$
+is a linear subspace.
+We attempt to define a norm on $X / N$ by $|[x]| = |x|$.
+Let $[y] = 0$. Then
+\[
+|[x + y]|
+= |x + y|
+\leq |x| + |y|
+= |x|
+= |[x]|
+\]
+and
+\[
+|[x]|
+= |x|
+= |x + y - y|
+\leq |x+y| + |y|
+= |x + y|
+= |[x + y]|
+\]
+so $|\cdot|$ is well-defined on $X / N$.
+
+This satisfies $|\lambda [x]| = |\lambda| |[x]|$
+and
+\[
+|[x] + [y]|
+= |[x + y]|
+= |x + y|
+\leq |x| + |y|
+= |[x]| + |[y]|.
+\]
+If $|[x]| = 0$ then $|x| = 0$ so $x \in N$ and $[x] = 0$.
+We thus have a norm.
+
+4. Let $(x_n)$ be a Cauchy sequence in $X/N$. Then there are $x_{nm}$ in $V$ such
+that $x_n = x_{mn}$, and each $(x_{mn})_m$ is a Cauchy sequence.
+Let $y = (x_{nn})$.
+Then
+\[
+x_{nn} - x_{mm}
+= (x_{nn} - x_{nl})
++ (x_{nl} - x_{ml})
++ (x_{ml} - x_{mm})
+\]
+each of which we can make $< \varepsilon/3$, so $(x_{nn})$ is Cauchy.
+Similarly we see that $(x_n) \to y$, so $X$ is complete.
+
+5. The map is clearly linear and injective.
+We have $|(x,x,\ldots)| = |x|$, so it is bounded and thus continuous.
+
+6. Let $Y$ be a Banach space and let $f : V \to Y$ be continuous.
+We define $\hat f : X/N \to Y$ by
+\[
+\hat f([x]) = \lim_{n\to \infty} f(x_n),
+\]
+where $[x] = (x_n)$ is the image of a Cauchy sequence in $V$.
+This is well-defined because $(x_n)$ is a Cauchy sequence in $V$ and $f$ is
+continuous, so $(f(x_n))$ is a Cauchy sequence in $Y$ and thus has a limit
+as $Y$ is Banach.
+Further, if $x_n \to 0$ then $f(x_n) \to 0$, so this maps all of $N$ to $0$.
+We see that $\hat f$ is a linear map.
+
+As $f : V \to Y$ is continuous there is a $C > 0$ such that $|f(x)| \leq C |x|$
+for all $x \in V$.
+Let $[x] \in X / N$ and let $(x_n)$ be a Cauchy sequence that represents $[x]$.
+Then $|f(x_n)| \leq C |x_n|$ for all $n$, so
+\[
+|\hat f([x])|
+= \biggl| \lim_{n \to \infty} f(x_n) \biggr|
+= \lim_{n \to \infty} | f(x_n) |
+\leq C \lim_{n \to \infty} |x_n|
+= C |[x]|
+\]
+where we can pull the limit out because both limits exist.
+Then $\hat f$ is bounded and thus continuous.
+\end{proof}
+
+\end{document}

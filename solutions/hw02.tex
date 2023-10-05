@@ -1,0 +1,202 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+
+\DeclareMathOperator{\supp}{supp}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 2}
+\\[3pt]
+Due by 15:00 on Monday, September 4, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select three problems to solve and hand in written solutions either in person or to \verb+gunnar@magnusson.io+.
+
+A \emph{metrizable vector space} is a vector space $V$ that is
+equipped with a metric $d$ for which the addition map $(x, y) \mapsto x +
+y$ and multiplication map $(\lambda, x) \mapsto \lambda x$ are continuous.
+We suppose here that $V$ is defined over a field $k$ such that $\kk R \subset k$
+(for example, the real or complex numbers.
+
+
+\begin{prob}
+Let $T_a(x) = x + a$ and $M_\lambda(x) = \lambda x$ for $a \in V$ and $\lambda
+\in k$.
+Show that $T_a$ and $M_\lambda$ are homeomorphisms of $V$ with itself; that is,
+they are continuous maps that have a continuous inverse.
+\end{prob}
+
+
+\begin{proof}[Solution]
+The restriction of a continuous function to a subspace is continuous.
+If $p(x,y) = x+y$ is the addition map then $T_a$ is its restriction to
+$\{(x,a) \in V \times V \mid x \in V \}$, so $T_a$ is continuous.
+The inverse of $T_a$ is $T_{-a}$, which is also continuous, so it is a
+homeomorphism.
+
+Similarly $M_\lambda$ is the restriction of the multiplication map to
+$\{(\lambda, x) \in k \times V \mid x \in V \}$, so it is continuous.
+(We have to assume there's a metric also on $k$ we can use, so let's do that.)
+If $\lambda\not=0$ the inverse of $M_{\lambda}$ is $M_{1/\lambda}$, which is
+also continuous.
+\end{proof}
+
+
+\begin{prob}
+Let $V$ and $W$ be metrizable vector spaces and $f : V \to W$ a linear map.
+Show that $f$ is continuous if and only if it is continuous at $0$.
+\end{prob}
+
+\begin{proof}[Solution]
+If $f$ is continuous it is clearly continuous at $0$.
+
+Suppose then that $f$ is continuous at $0$ and let's show it is continuous at $x$.
+A function on a metric space is continuous at $x$ if and only if $f(x_n) \to f(x)$
+for every sequence $(x_n)$ that converges to $x$.
+If $(x_n)$ is a sequence that converges to $x$, then $(x_n-x)$ is a sequence
+that converges to $0$, and
+\[
+f(x_n) - f(x)
+= f(x_n - x)
+\to 0
+\]
+by linearity and continuity at $0$, so $f(x_n) \to f(x)$.
+\end{proof}
+
+A subset $E \subset V$ of a metrizable vector space is \emph{bounded} if for
+any neighborhood $U$ of $0$ there exists a $\lambda > 0$ such that $E
+\subset \mu U$ for any $\mu \geq \lambda$.
+
+Note that this is \emph{not} the same notion of boundedness we get from the
+metric on $V$; it can be defined if we only have a topology and not a metric.
+Sets can be bounded in one notion and not the other.
+
+
+\begin{prob}
+Let $U$ be an open set that contains $0$.
+Let $(r_j)$ be an increasing sequence of positive real numbers such that $r_j
+\to \infty$. Show that $V = \bigcup_{j=1}^\infty r_j U$.
+Conclude that if $K \subset V$ is compact, then $K$ is bounded.
+\end{prob}
+
+
+\begin{proof}[Solution]
+Pick $x \in V$.
+Multiplication by a scalar is continuous and $0 \cdot x = 0 \in U$,
+so there is some $\lambda > 0$ such that $\lambda x \in U$.
+If we pick $j$ such that $r_j > 1/\lambda$ then $x \in r_j U$.
+Therefore $V = \bigcup_{j=1}^\infty r_j U$.
+
+Let $K \subset V$ be compact and let $U$ be an open neighborhood of $0$.
+There exists an $\varepsilon > 0$ such that $0 \in B(\varepsilon) \subset U$.
+By the above, $(r_j B(\varepsilon))$ is an open covering of $V$, so it contains
+a finite subcover of $K$. Therefore there is an $r > 0$ such that $K \subset r
+B(\varepsilon) = B(r \varepsilon)$.
+If $\mu \geq r$ then $K \subset B(r \varepsilon) \subset B(\mu \varepsilon)
+\subset \mu U$, so $K$ is bounded.
+\end{proof}
+
+
+\begin{prob}
+Let $E \subset V$ be a set.
+Show that the following are equivalent:
+\begin{enumerate}
+\item
+$E$ is bounded.
+
+\item
+If $(x_n)$ is a sequence in $E$ and $(\lambda_n)$ is a sequence of scalars such
+that $\lambda_n \to 0$ as $n \to \infty$, then $\lambda_n x_n \to 0$ as $n \to
+\infty$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Solution]
+Suppose first that $E$ is bounded.
+Let $(x_n)$ be a sequence in $E$ and let $(\lambda_n)$ be a sequence of
+scalars that tends to $0$.
+Let $\varepsilon > 0$ and consider $B(\varepsilon)$.
+As $E$ is bounded there is a $\lambda > 0$ such that $E \subset \mu B(\varepsilon)$
+for every $\mu \geq \lambda$.
+There is an $n(\lambda)$ such that $1/\lambda_n \geq \lambda$ for $n \geq n(\lambda)$.
+Then $\lambda_n x_n \in B(\varepsilon)$ for all $n \geq n(\lambda)$, so
+$\lambda_n x_n \to 0$.
+
+Suppose now that $E$ is not bounded and let $U$ be an open neighborhood of $0$.
+For every $n$ there is then an element $x_n \in E \setminus n U$.
+But then $(x_n)$ is a sequence of elements in $E$ and $\lambda_n = 1/n$ a
+sequence of scalars that tends to zero such that $x_n / n$ does not tend to
+$0$, so the sequence condition does not hold.
+\end{proof}
+
+A map $f : V \to W$ between metrizable vector spaces is \emph{bounded} if
+it maps bounded sets to bounded sets.
+
+\begin{prob}
+Let $V$ and $W$ be metrizable vector spaces and $f : V \to W$ a linear map.
+Show that if $f$ is continuous then it is bounded.
+Find spaces $V$ and $W$ and a linear function $f : V \to W$ that is not continuous.
+\end{prob}
+
+\begin{proof}[Solution]
+Let $E \subset V$ be a bounded set, let $U \subset W$ be an open
+neighborhood of $0$.
+As $f$ is continuous and linear, then $f^{-1}(U) \subset V$ is an open
+neighborhood of $0$.
+Therefore there is a $\lambda > 0$ such that
+$E \subset \mu f^{-1}(U)$ for any $\mu \geq \lambda$.
+But then $f(E) \subset f(\mu f^{-1}(U)) = \mu f(f^{-1}(U)) = \mu U$
+for any $\mu \geq \lambda$
+by linearity.
+
+Let $V = W = \cc C^\infty([0,1])$ and let $d(f,g) = \sup_{x \in [0,1]}|f(x)-g(x)|$.
+Then $V$ is a metrizable vector space.
+Consider the linear map $f \mapsto f'$.
+The set $E = \{ e^{-n x} \}_{n \geq 0} \subset V$ is bounded:
+Let $U \subset V$ be an open neighborhood around $0$, and let $B(\varepsilon) \subset U$.
+We have $d(e^{-nx}, 0) = 1$ for any $n$,
+so $E \subset \mu B( \varepsilon ) \subset \mu U$ for any $\mu > 1 / \varepsilon$.
+
+However, let $x_n := (e^{-nx})' = -n e^{-nx}$
+define a sequence of points in the image of $E$.
+Let $\lambda_n = 1/\sqrt n$.
+Then $\lambda_n \to 0$ but
+\[
+d(\lambda_n x_n, 0) = d(-\sqrt n e^{-nx}, 0) = \sqrt n \to \infty
+\]
+so $(\lambda_n x_n)$ does not tend to $0$, and the image of $E$ is thus not
+bounded.
+Therefore the map $f \mapsto f'$ is not continuous.
+\end{proof}
+
+\end{document}

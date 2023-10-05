@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 5}
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+\begin{prob}
+If $V$ is a normed space and $S \subset V$ a subset, we define the distance from
+a point $x$ to $S$ by $d(x, S) = \inf_{y \in S} |x - y|$.
+Let $f : V \to \kk R$ be a bounded linear functional and let
+\[
+H_f = \{ x \in V \mid f(x) = 1 \}.
+\]
+Show that
+\[
+|f| = \frac{1}{d(0, H_f)}.
+\]
+\end{prob}
+
+\begin{proof}[Solution]
+If $|f| = 0$ then $f = 0$ and $H_f = \varnothing$ and $\inf$ of the empty set
+is $\infty$, so that works.
+We may thus assume that $f \not= 0$.
+
+If $f(x) = 0$ then $|f(x)|/|x| = 0$, so
+\begin{align*}
+|f|
+= \sup_{x\not=0} \frac{|f(x)|}{|x|}
+= \sup_{f(x)\not=0} \frac{|f(x)|}{|x|}
+&= \sup_{f(x)\not=0} \frac{1}{|x/f(x)|}
+\\
+&= \frac{1}{\inf\limits_{f(x)\not=0} |x/f(x)|}
+= \frac{1}{d(0, H_f)}.
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{prob}
+Let $V = \kk R^2$ and let $f : V \to V$ be the operator defined by the matrix
+\[
+A = \begin{pmatrix}
+1 & 2 \\ 3 & 4
+\end{pmatrix}.
+\]
+Calculate $|A|$ when $V$ has each of the norms below:
+\begin{enumerate}
+\item
+$|(x,y)|_1 = |x| + |y|$.
+
+\item
+$|(x,y)|_2 = \sqrt{x^2 + y^2}$.
+
+\item
+$|(x,y)|_\infty = \max\{|x|, |y|\}$.
+\end{enumerate}
+If this is too difficult we may also accept bounds in terms of the other norms
+or numerical approximations.
+\end{prob}
+
+\begin{proof}[Solution]
+Case by case analysis shows the answer in 1 is 6, and the answer in 3 is 7.
+The answer in 2 is the largest square root of an eigeinvalue of $A^t A$,
+or approximately 5.465 if we don't want to calculate that.
+\end{proof}
+
+\begin{prob}
+Let $V$ and $W \not= 0$ be normed spaces.
+Suppose that $\dim V = \infty$.
+Show that there exists an unbounded linear operator $f : V \to W$.
+Conclude that $V^\vee \not= V^*$.
+(Hint: Every vector space has a basis.)
+\end{prob}
+
+\begin{proof}[Solution]
+Let $(e_\alpha)_{\alpha \in J}$ be a basis for $V$.
+As $\dim V = \infty$ the set $J$ contains a countable subset $J_0$ that
+we identify with $\kk N$.
+Pick a nonzero $y \in W$ of norm $1$ and define $f : V \to W$ by
+\(
+f(e_\alpha) = n y
+\)
+if $n \mapsto \alpha$ and $0$ otherwise, and extend by linearity to all of $V$.
+Then $f$ is an unbounded linear operator.
+We can in particular do this when $W = \kk R$, so there always exists an
+unbounded linear functional on an infinite-dimensional space.
+\end{proof}
+
+
+\begin{theo}[Hahn--Banach]
+Let $V$ be a normed space and let $S \subset V$ be a subspace.
+If $f \in S^\vee$ there exists a bounded extension $\hat f \in V^\vee$ of $f$
+such that $|\hat f| = |f|$.
+\end{theo}
+
+\begin{prob}[Proof of Hahn--Banach, part 1]
+Let $V$ be a normed space.
+\begin{enumerate}
+\item
+Let $S \subset V$ be a linear subspace.
+Let $x_1 \in V \setminus S$ and let $S_1 = S + \kk R x_1$.
+Show that $S_1$ is a linear subspace that contains $S$, and that every vector
+in $S_1$ can be written uniquely as $x = x_0 + \lambda x_1$, where $x_0 \in S$
+and $\lambda \in \kk R$.
+
+\item
+Let $f \in S^\vee$.
+Show that $f_1(x) = f(x_0)$ is a bounded extension of $f$ from $S^\vee$ to
+$S_1^\vee$, and that $|f_1| = |f|$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Solution]
+1. Obvious because $S_1 = S \oplus \kk R x_1$.
+
+2. Define $f_1(x + \lambda x_0) = f(x) + \lambda c$, where $c$ will be chosen
+later. This functional is clearly an extension of $f$ to $S_1$.
+We would like it to satisfy $|f_1| = |f|$, and may assume that $|f| = 1$.
+We would then like to have
+\[
+- |x + \lambda x_0| \leq f(x) + c \lambda \leq |x + \lambda x_0|
+\]
+for any $x$ and $\lambda$.
+This holds for $\lambda = 0$ by hypothesis.
+For $\lambda \not= 0$ we can rewrite this as
+\[
+- |x/\lambda + x_0| - f(x / \lambda)
+\leq c
+\leq |x/\lambda + x_0| - f(x / \lambda),
+\]
+or equivalently
+\[
+- |y + x_0| - f(y)
+\leq c
+\leq |y + x_0| - f(y)
+\]
+for $y \in S$.
+For $y, z \in S$ we have
+\[
+f(z) - f(y)
+= f(z-y)
+\leq |z - y|
+\leq |z + x_0| + |y + x_0|
+\]
+by $|f| = 1$, so in fact
+\[
+- |y + x_0| - f(y)
+\leq |z + x_0| - f(z)
+\]
+for all $y, z \in S$.
+Then
+\[
+a := \sup_{y \in S} -|y + x_0| - f(y),
+\quad
+b := \inf_{z \in S} |z + x_0| - f(z)
+\]
+are finite and satisfy $a \leq b$, so any $c \in [a, b]$ will do.
+\end{proof}
+
+\emph{A partial order} on a set $S$ is a binary relation $\prec$
+on $S$ that satisfies:
+\begin{itemize}
+\item
+Reflexivity: $x \prec x$.
+
+\item
+Antisymmetry:
+$x \prec y$ and $y \prec x$ imply $x = y$.
+
+\item
+Transitivity:
+$x \prec y$ and $y \prec z$ imply $x \prec z$.
+\end{itemize}
+As an example, consider the inclusion $U \subset V$ of subsets of $S$.
+
+A subset $T \subset S$ is totally ordered if for every $x,y$ in $T$ we have
+either $x \prec y$ or $y \prec x$.
+An element $y$ is an upper bound for $T$ if $x \prec y$ for every $x \in T$.
+Finally an element $y \in S$ is maximal if $x \prec y$ implies $x = y$.
+
+Zorn's lemma says that if $(S,\prec)$ is a partially ordered set such that
+every totally ordered subset contains an upper bound, then $(S,\prec)$ contains
+at least one maximal element.
+
+
+\begin{prob}[Proof of Hahn--Banach, part 2]
+Let $V$ be a normed space and $S \subset V$ a subspace.
+Let also $f \in S^\vee$ be a bounded linear functional.
+Denote by $\cc L$ the set of all bounded extensions $(M, g)$ of $f$ to a
+subspace $M$ such that $|g| = |f|$.
+
+\begin{enumerate}
+\item
+Show that $(S, f) \in \cc L$, so it is not empty.
+
+\item
+We write $(M,g) \prec (M',g')$ if $M \subset M'$ and $g'(x) = g(x)$ for all $x
+\in M$.
+Show that this is a partial order on $\cc L$.
+
+\item
+Suppose that $\cc F$ is a totally ordered subset of $\cc L$.
+Define a set $W = \bigcup_{(M,f) \in \cc F} M$.
+Show that $W$ is in fact a vector subspace of $V$.
+
+\item
+Suppose that $\cc F$ is a totally ordered subset of $\cc L$.
+Define $W$ as above and define $h : W \to \kk R$ by
+\(
+h(x) = g(x)
+\)
+for any $(M,g)$ such that $x \in M$.
+Show that this is well-defined, and that $h$ is an extension of $f$.
+
+\item
+Conclude that there exists a maximal extension $h : W \to \kk R$ of $f$,
+and use part 1 to conclude that we must have $W = V$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Solution]
+\end{proof}
+
+\end{document}

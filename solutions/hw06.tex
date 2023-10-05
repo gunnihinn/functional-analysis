@@ -1,0 +1,232 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+\def\norm#1{\| #1 \|}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ann}{ann}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 6}
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+A \emph{hyperplane} in a normed space $V$ is a set of the form $H = x_0 + H_0$,
+where $H_0 \subset V$ is a subspace such that $\codim H_0 := \dim V / H_0 = 1$.
+
+\begin{prob}
+Let $V$ be a normed space.
+Show that $H$ is a closed hyperplane if and only if there exists a bounded
+linear functional $f \in V^\vee$ such that $H = f^{-1}(c)$ for some $c \in \kk R$.
+Then show that $V \setminus H$ consists of two disjoint connected components.
+\end{prob}
+
+\begin{proof}[Solution]
+Let $H = x_0 + H_0$ be a closed hyperplane.
+Then $H_0 \subset V$ is a closed subspace, so there exists a bounded linear
+functional $f \in V^\vee$ such that $H_0 \subset \ker f$.
+We then have the exact sequences
+\[
+\begin{tikzcd}
+0 \ar[r] & H_0 \ar[r] \ar[d,"j"] & V \ar[r,"q"] \ar[d,"\id"] & V / H_0 \ar[r] & 0
+\\
+0 \ar[r] & \ker f \ar[r] & V \ar[r,"f"] & \kk R \ar[r] & 0
+\end{tikzcd}
+\]
+from which we define a linear map $p : V/H_0 \to \kk R$ by $[x] \mapsto f(x)$,
+where $x \in [x] \in V / H_0$. This map is linear and nonzero, and thus an
+isomorphism.
+It follows that $j$ is also an isomorphism.
+Therefore $H_0 = \ker f$, so $H = f^{-1}(f(x_0))$.
+
+Let now $f \in V^\vee$. If $x$ is such that $f(x) = c$ then $f^{-1}(c) = x +
+\ker f$, so it is a hyperplane, and closed because $\ker f = f^{-1}(0)$ is closed.
+
+The complement is
+\[
+V \setminus H
+= f^{-1}((-\infty, c) \cup (c, \infty))
+= f^{-1}((-\infty, c)) \cup f^{-1}((c, \infty))
+=: V_{-} \cup V_{+}
+\]
+which are two open disjoint sets.
+If $x, y \in V_{+}$ then
+\[
+f((1-t) x + t y)
+= (1-t) f(x) + t f(y)
+> (1-t) c + t c = c
+\]
+so the segment $\{(1-t) x + ty \mid 0 \leq t \leq 1 \} \subset V_+$. The
+set is thus path connected.
+\end{proof}
+
+\begin{prob}
+Let $V$ be a normed space and let
+\begin{align*}
+S(r) = \{ x \in V \mid \norm{x} = r \},
+\quad
+B(r) = \{ x \in V \mid \norm{x} < r \},
+\end{align*}
+be the sphere and ball of radius $r$.
+Show that for any $x_0 \in S(r)$ there exists a hyperplane $H \subset V$ that
+contains $x_0$ such that the open ball $B(r)$ is
+entirely contained in one component of $V \setminus H$.
+\end{prob}
+
+\begin{proof}[Solution]
+Let $S = \kk R x_0$ and define $f : S \to \kk R$ by $f(x_0) = r$,
+where $r = |x_0|$, and extend by linearity.
+Then
+\[
+|f|
+= \sup_{|\lambda x_0| = 1} |f(\lambda x_0)|
+= \sup_{|\lambda| r = 1} |\lambda| r
+= 1.
+\]
+By Hahn--Banach we can extend this to $f \in V^\vee$ such that $|f| = 1$.
+For any $x \in B(r)$ we then have
+\[
+|f(x)| \leq |f| |x| < r,
+\]
+so $B(r) \subset \{ x \in V \mid f(x) < r \}$ while
+$x_0 \in \{ x \in V \mid f(x) = r \}$.
+\end{proof}
+
+The \emph{annihilator} of a set $M$ in a normed space $V$ is the set
+\[
+M^{\perp} = \{ f \in V^\vee \mid \text{$f(x) = 0$ for all $x \in M$} \}.
+\]
+
+\begin{prob}
+Let $V$ be a normed space and $S \subset V$ a subspace.
+Show that $S^\vee$ is isometric to $V^\vee / S^\perp$.
+\end{prob}
+
+\begin{proof}[Solution]
+We have short exact sequences
+\[
+\begin{tikzcd}
+0 \ar[r] & \ker \rho \ar[r] & V^\vee \ar[d] \ar[r,"\rho"] & S^\vee \ar[r] & 0
+\\
+0 \ar[r] & S^\perp \ar[r] & V^\vee \ar[r] & V^\vee / S^\perp \ar[r] & 0,
+\end{tikzcd}
+\]
+where the upper row is exact because of Hahn--Banach.
+The map $\rho : V^\vee \to S^\vee$ is just the restriction map $f \mapsto f_{|S}$.
+Its kernel is
+\[
+\ker \rho
+= \{ f \in V^\vee \mid f_{|S} = 0 \}
+= S^\perp.
+\]
+We thus get a well-defined linear map $\psi : S^\vee \to V^\vee / S^\perp$
+by $\psi(f) = [\hat f]$, where $\hat f$ is an extension of $f$.
+
+This map is injective, because if $\psi(f) = [ \hat f ] = 0$ then $\hat f \in
+S^\perp$ and $f = \rho(\hat f) = 0$.
+It is also surjective: Let $[g] \in V^\vee / S^\perp$, where $g \in V^\vee$.
+Set $f = g_{|S}$. Then $\psi(f) = [g]$.
+
+Note that every $x \in V$ defines a linear functional $e_x \in (V^\vee)^\vee$
+by $e_x(f) = f(x)$.
+We have $S^\perp = \bigcap_{x \in S} \ker e_x$, so $S^\perp$ is the intersection
+of closed sets and thus closed.
+Therefore $V^\vee / S^\perp$ is a normed space.
+For $f \in S^\vee$ we have
+\[
+|\psi(f)|
+= |[ \hat f ]|
+= \inf_{\hat f_{|S} = f} |\hat f|
+= |f|,
+\]
+where the last equality is by Hahn--Banach.
+\end{proof}
+
+\begin{prob}
+Let $V$ be a normed space and $S \subset V$ a closed subspace.
+Show that $(V / S)^\vee$ is isometric to $S^\perp$.
+\end{prob}
+
+\begin{proof}[Solution]
+Since $S$ is closed the quotient $V/S$ is a normed space.
+We define a map $\psi : S^\perp \to (V/S)^\vee$ by
+\[
+\psi(f)([x]) = f(x).
+\]
+We have to show this is a well-defined linear map and that $\psi(f)$ is
+bounded. By definition we have $f_{|S} = 0$, so the map is well-defined and
+linear.
+
+This map is injective: If $\psi(f)([x]) = 0$ for all $[x]$ then $f(x) = 0$ for
+all $x$, so $f = 0$.
+The map is also surjective: Let $g \in (V/S)^\vee$.
+Define a map $f \in V^\vee$ by $f(x) = g([x])$.
+Then $f_{|S} = 0$ so $f \in S^\perp$ and $\psi(f) = g$.
+
+Now
+\[
+|\psi(f)|
+= \sup_{[x] = 1} |\psi(f)([x])|.
+\]
+We have $|[x]| = \inf_{y \in S}|x - y|$, so if $|[x]| = 1$ there exists
+$x \in V$ and $(y_n)$ in $S$ such that $|x - y_n| \to 1$ as $n \to \infty$ (and
+$|x - y| \geq 1$ for all $y \in S$).
+For such an $x$ we have
+\[
+|\psi(f)([x])|
+= |f(x)|
+= \frac{|f(x)|}{|x|} |x|
+\leq |f| \, |x|
+\leq |f|(|y| + |x - y|)
+\]
+for $y \in S$.
+Taking $\inf$ over $y \in S$ we get $|\psi(f)([x])| \leq |f|$ when $|[x]| = 1$,
+so $|\psi(f)| \leq |f|$.
+
+For any $x$ we have $|[x]| \leq |x|$, so
+\[
+|\psi(f)|
+= \sup_{|[x]|\not= 0} \frac{|\psi(f)([x])|}{|[x]|}
+\geq \sup_{x\not\in S} \frac{|f(x)|}{|x|}
+= \sup_{x \not= 0} \frac{|f(x)|}{|x|}
+= |f|
+\]
+because $f_{|S} = 0$, so $|\psi(f)| = |f|$.
+\end{proof}
+
+\end{document}
