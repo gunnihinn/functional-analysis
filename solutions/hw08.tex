@@ -1,0 +1,268 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+\def\norm#1{\| #1 \|}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ann}{ann}
+
+\def\head{
+	\begin{center}
+		\textbf{\LARGE Homework set 8}
+		\\[3pt]
+		Due by 15:00 on Monday, October 16, 2023.
+	\end{center}
+	\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select \textbf{three} problems to solve and hand in written solutions
+either in person or to \verb+gunnar@magnusson.io+.
+
+\begin{prob}
+	Let $V$ be a Hilbert space.
+	Show that $V^\vee$ is a Hilbert space when given the inner product
+	\[
+		\< f, \bar g \> = \< y, \bar x \>,
+	\]
+	where $x, y \in V$ and $x \mapsto f$ and $y \mapsto g$ under the Riesz representation theorem.
+\end{prob}
+
+\begin{proof}[Solution]
+	Let's denote this correspondence by $x = \rho(f)$.
+	Then we have $f(z) = \< z, \bar x \> = \<z, \overline{\rho(f)}\>$ for all $z \in V$.
+	We claim that $\<f, \bar g\> = \<\rho(g), \overline{\rho(f)}\>$ defines an inner product:
+	It is additive in each variable because $\rho$ is additive, and we have $\rho(\lambda f) = \bar \lambda \rho(f)$, so it is sesquilinear.
+	Further $|f|^2 = |\rho(f)|^2 = 0$ if and only if $\rho(f) = 0$, which happens if and only if $f = 0$ by Riesz.
+
+	Suppose then that $(f_n)$ is a Cauchy sequence in $V^\vee$,
+	and set $x_n = \rho(f_n)$.
+	As $|f_n - f_m| = |x_n - x_m|$ by definition, it follows that $(x_n)$ is Cauchy, so its limit $x$ exists.
+	Set $f(y) := \<y, \bar x\>$.
+	Then $|f - f_n| = |x - x_n|$ so $f_n \to f$.
+\end{proof}
+
+\begin{prob}
+	Recall that the annihilator of a subset $M \subset V$ of a normed space is the set
+	\[
+		\ann M = \{ f \in V^\vee \mid \text{$f(x) = 0$ for all $x \in M$}\}.
+	\]
+	Discuss the relationship between $M^\perp$ and $\ann M$ in a Hilbert space $V$.
+\end{prob}
+
+\begin{proof}[Solution]
+	There is a linear map
+	\[
+		\theta : M^\perp \to \ann M,
+		\quad
+		y \mapsto (x \mapsto \<x, \bar y\>).
+	\]
+	It is injective by construction, and bounded as $|\theta(x)| = |x|$ for all $x$.
+	If $f \in \ann M$ there is a $y \in V$ such that $f(x) = \<x, \bar y\>$ for all $x$ by Riesz.
+	But for $x \in M$ we have $0 = f(x) = \<x, \bar y\>$, so $y \in M^\perp$, and $\theta$ is thus surjective.
+\end{proof}
+
+\begin{prob}
+	Let $V$ be a Hilbert space and let $S \subset V$ be a closed subspace.
+	Show that the quotient space $V/S$ is also a Hilbert space.
+	Show that $S^\perp$ is isometric to $V / S$.
+\end{prob}
+
+\begin{proof}[Solution]
+	By Homework 6, Problem 4 we know that $(V/S)^\vee \cong \ann S$.
+	Problems 1 and 2 here then give us a diagram
+	\[
+		\begin{tikzcd}
+			V/S \ar[d] & S^\perp \ar[d]
+			\\
+			(V/S)^\vee \ar[r] & \ann S
+		\end{tikzcd}
+	\]
+	where all the arrows are isometries, so we win an isometry $V/S \to S^\perp$.
+\end{proof}
+
+\begin{prob}
+	Let $V$ and $W$ be Hilbert spaces and $(f_n)$ a sequence of bounded operators from $V$ to $W$ such that $f_n \to f$.
+	Show that $f_n^* \to f^*$.
+\end{prob}
+
+\begin{proof}[Solution]
+	First let $f : V \to W$ be an arbitrary bounded operator.
+	For any $x \in V$ and $y \in W$ we have
+	\[
+		\< f(x), \bar y \> = \< x, \overline{f^*(y)} \>
+	\]
+	and we then see that
+	\[
+		|f^*(y)|^2
+		= \< f^*(y), \overline{f^*(y)} \>
+		= \< f(f^*(y)), \bar y \>.
+	\]
+	Now
+	\[
+		|\< f(f^*(y)), \bar y \>|^2
+		\leq |f(f^*(y))|^2 |y|^2
+		\leq |f|^2 |f^*(y)|^2 |y|^2
+	\]
+	so taking square roots and remembering that the inner product term was nonnegative we see that
+	\[
+		|f^*(y)|
+		\leq |f| |y|
+	\]
+	for all $y$
+	and thus $|f^*| \leq |f|$.
+
+	Now, by linearity we may assume that $f = 0$, and then $f^* = 0$.
+	By the above we then get $|f_n^*| \leq |f_n| \to 0$.
+\end{proof}
+
+\begin{prob}
+	Let $V$ and $W$ be Hilbert spaces and $f : V \to W$ a bounded operator.
+	Show that:
+	\begin{enumerate}
+		\item $\im f^* \subset (\ker f)^\perp$.
+		\item $(\im f)^\perp \subset \ker f^*$.
+		\item $\ker f = (\im f^*)^\perp$.
+	\end{enumerate}
+\end{prob}
+
+\begin{proof}[Solution]
+	1. Let $y \in W$ and $x \in \ker f$. Then
+	\[
+		0 = \< f(x), \bar y \> = \< x, \overline{f^*(y)} \>
+	\]
+	so $f^*(y) \in (\ker f)^\perp$.
+
+	2. Let $x \in V$ and $y \in (\im f)^\perp$. Then
+	\[
+		0 = \< f(x), \bar y \> = \< x, \overline{f^*(y)} \>.
+	\]
+	But $x$ was arbitrary so we can take $x = f^*(y)$ and see that $f^*(y) = 0$, so $y \in \ker f^*$.
+
+	3. From 1 we see that $\ker f \subset (\im f^*)^\perp$.
+	Applying 2 to $f^*$ we get that $(\im f^*)^\perp \subset \ker (f^*)^* = \ker f$.
+	Together we get the result.
+\end{proof}
+
+\begin{prob}
+	Let $V$ and $W$ be Hilbert spaces and $f : V \to W$ a bounded operator.
+	Show that $f^* f : V \to V$ is a bounded self-adjoint operator and that $|f| = \sqrt{|f^* f|}$.
+\end{prob}
+
+\begin{proof}[Solution]
+	Since $f$ is bounded then so is $f^*$, and the composition of bounded operators is bounded. Now
+	\[
+		|f|
+		= \sup_{x\not=0} \frac{|f(x)|}{|x|}
+		= \sup_{x\not=0} \frac{\sqrt{\<f(x), \overline{f(x)}\>}}{|x|}
+		= \sup_{x\not=0} \frac{\sqrt{\<f^*f(x), \bar x}\>}{|x|}
+		\leq \sqrt{|f^*f|}
+	\]
+	by Cauchy--Schwarz.
+	On the other hand we have $|f^*f| \leq |f^*||f| \leq |f|^2$, so $|f^*f| = |f|^2$.
+\end{proof}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
