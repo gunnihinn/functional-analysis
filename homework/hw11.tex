@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+\def\norm#1{\| #1 \|}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ann}{ann}
+
+\def\head{
+	\begin{center}
+		\textbf{\LARGE Homework set 11}
+		\\[3pt]
+		Due by 15:00 on Monday, November 6, 2023.
+	\end{center}
+	\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select \textbf{three} problems to solve and hand in written solutions
+either in person or to \verb+gunnar@magnusson.io+.
+
+\begin{prob}
+	Let $X$ and $Y$ be normed spaces and $f : X \to Y$ a linear operator.
+	Show that the graph $\Gamma_f$ of $f$ is closed in $X \oplus Y$ if and only if the operator satisfies: If $x_n \to 0$ in $X$ and $f(x_n) \to y$, then $y = 0$.
+\end{prob}
+
+\begin{prob}
+	Let $X$ and $Y$ be Banach spaces and $f : X \to Y$ a bounded operator.
+	Show that there exists a $c > 0$ such that $\| f(x) \| \geq c \| x \|$
+	if and only if $\ker f = 0$ and $\im f$ is closed.
+\end{prob}
+
+\begin{prob}
+	Prove a converse of the closed graph theorem:
+	If $f : X \to Y$ is a bounded linear operator between normed spaces,
+	then the graph $\Gamma_f$ of $f$ is closed in $X \oplus Y$.
+\end{prob}
+
+\begin{prob}
+	Let $X$ be a vector space and $\|\cdot\|_1$ and $\|\cdot\|_2$ norms on $X$
+	such that $X_1 = (X, \| \cdot \|_1)$ and $X_2 = (X, \|\cdot\|_2)$ are both complete.
+	Show that the following are equivalent:
+	\begin{itemize}
+		\item
+			If $\| x_n \|_1 \to 0$ then $\| x_n \|_2 \to 0$.
+		\item
+			If $(x_n)$ converges in $X_1$ then it converges in $X_2$.
+	\end{itemize}
+	If either condition holds, show that the norms $\| \cdot \|_1$ and $\| \cdot \|_2$ are equivalent.
+\end{prob}
+
+Recall that a set $U$ in a metric space $X$ is \emph{open} if there exist open
+balls $B(x_i, r_i)$ for $i \in I$ such that $U = \bigcup_{i \in I} B(x_i, r_i)$.
+The collection $\tau(X)$ of open sets of a metric space $X$ is called a
+\emph{topology} on $X$.
+
+\begin{prob}
+	Let $X$ be a vector space and $\|\cdot\|_1$ and $\|\cdot\|_2$ norms on $X$
+	such that $X_1 = (X, \| \cdot \|_1)$ and $X_2 = (X, \|\cdot\|_2)$ are both complete.
+	Suppose that $\tau(X_1) \subset \tau(X_2)$.
+	Show that $\tau(X_1) = \tau(X_2)$.
+\end{prob}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
