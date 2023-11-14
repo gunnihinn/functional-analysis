@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+
+\usepackage{tgpagella}
+\linespread{1.0}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\newtheorem*{theo}{Theorem}
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+\newtheorem*{defi}{Definition}
+
+\newcommand{\kk}[1]{\mathbf{#1}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+
+\def\<{\langle}
+\def\>{\rangle}
+\def\norm#1{\| #1 \|}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ann}{ann}
+
+\def\head{
+\begin{center}
+\textbf{\LARGE Homework set 13}
+\\[3pt]
+Due by 15:00 on Monday, November 21, 2023.
+\end{center}
+\medskip
+}
+
+\begin{document}
+
+\head
+
+Please select \textbf{three} problems to solve and hand in written solutions
+either in person or to \verb+gunnar@magnusson.io+.
+
+\begin{prob}
+Let $A$ be a complex Banach algebra with identity and $x \in A$ such that $x^n
+= 0$ for some integer $n > 0$.
+Show that $\sigma(x) = \{ 0 \}$.
+\end{prob}
+
+\begin{prob}
+Let $A$ be a complex Banach algebra.
+Let $x \in A$ be invertible and $y$ be such that $\| y x^{-1} \| < 1$.
+Show that $x - y$ is invertible and that
+\[
+(x - y)^{-1} = \sum_{n \geq 0} x^{-1} (y x^{-1})^n.
+\]
+\end{prob}
+
+\begin{prob}
+Let $X$ be a complex Banach space.
+If $U \subset \kk C$ is open, we say that $f : U \to X$ is \emph{holomorphic} if
+\[
+f'(z) = \lim_{h \to 0} \frac{f(z + h) - f(z)}{h}
+\]
+exists for all $z \in U$ and $f' : U \to \kk C$ is continuous.
+We say that $f$ is \emph{weakly holomorphic} if the
+function $\phi \circ f : U \to \kk C$ is holomorphic for all $\phi \in X^\vee$.
+Show that $f$ is holomorphic if and only if it is weakly holomorphic.
+\end{prob}
+
+If $\gamma : [a, b] \to U$ is a curve in an open set $U \subset \kk C$ and
+$f : U \to X$ a continuous function into a Banach space $X$, we define
+$\int_\gamma f(z) dz$ like the usual Riemann integral: as the limit in $X$ of
+sums of the form
+\[
+\sum_{j=1}^n (\gamma(t_{j}) - \gamma(t_{j-1})) f(\gamma(t_j)),
+\]
+where $a = t_0 \leq \cdots \leq t_n = b$ is a partition of $[a,b]$.
+Then $\int_\gamma f(z) dz \in X$ and if $\phi \in X^\vee$ we get
+$\phi(\int_\gamma f(z) dz) = \int_\gamma \phi(f(z)) dz$ by linearity.
+
+\begin{prob}[Cauchy's theorem]
+Let $X$ be a complex Banach space and $f : U \to X$ be holomorphic, where
+$U \subset \kk C$ is simply connected.
+Let $\gamma$ be a simple closed curve in $U$.
+Then
+\[
+\int_\gamma f(z) \, dz = 0.
+\]
+\end{prob}
+
+\begin{prob}[Cauchy's integral formula]
+Let $X$ be a complex Banach space and $f : U \to X$ be holomorphic.
+Let $z_0 \in U$ and let $\gamma$ be a closed simple curve in $U$ such that
+$z_0 \in \operatorname{int} \gamma$.
+Then
+\[
+f(z_0) = \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z - z_0} dz.
+\]
+\end{prob}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
